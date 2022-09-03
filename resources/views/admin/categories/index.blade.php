@@ -54,7 +54,7 @@
                                             <td>{{ $category->id }}</td>
                                             <td>{{ $category->name }}</td>                                        
                                             <td><a href="{{ route('categories.edit', compact('category'))}}" class="btn btn-info">EDIT</a>
-                                                <form action="{{ route('categories.destroy', compact('category'))}}" method="POST">
+                                                <form action="{{ route('categories.delete', compact('category'))}}" method="POST">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger">DELETE</button>
