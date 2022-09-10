@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\MyController;
 use App\Models\Category;
@@ -28,5 +29,6 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::prefix('admin')->group(function(){
     Route::get('/', [MyController::class, 'index']);
     Route::resource('categories', CategoryController::class)->except(['show']);
+    Route::resource('products', ProductController::class);
 });
 
