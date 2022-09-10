@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
@@ -35,8 +37,15 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
+        // Validator::make($request->all(), [
+        //     'name' => 'required|min:3|max:20'
+        // ]); - второй способ валидации
+        // $validated = $request->validate([
+        //     'name' => 'required|min:3|max:20'
+        // ]); - первый способ валидации (1 и 2 не используем см файл request)
+        
         Category::create($request->all());
         return redirect(route('categories.index'));
     }

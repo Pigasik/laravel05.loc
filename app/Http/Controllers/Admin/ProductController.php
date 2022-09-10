@@ -15,7 +15,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        // $count = Product::all()->count();
+        // $prePage = 15;
+        // $pages = ceil($count/$prePage); - первый способ
+     
+        $products = Product::paginate(10);
+        return view('admin.products.index', compact('products'));
     }
 
     /**
