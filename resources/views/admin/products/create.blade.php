@@ -5,7 +5,7 @@
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
-            @include('partials.header', ['name' => 'Articles'])
+            @include('partials.header', ['name' => 'Products'])
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
@@ -24,7 +24,7 @@
                     <div class="col-lg-12 col-xlg-12 col-md-12">
                         <div class="card">
                             <div class="card-body">
-                                <form action="{{ route('articles.store') }}" method="POST" class="form-horizontal form-material mx-2">
+                                <form enctype="multipart/form-data" action="{{ route('products.store') }}" method="POST" class="form-horizontal form-material mx-2">
                                 @csrf
                                     <div class="form-group">
                                         <label class="col-md-12">Name</label>
@@ -38,25 +38,37 @@
                                         @endif
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-12">Content</label>
+                                        <label class="col-md-12">Description</label>
                                         <div class="col-md-12">
-                                            <input name="content" type="text" class="form-control form-control-line {{$errors->has('content') ? 'is-invalid':''}}" value="{{old('content')}}">
-                                        </div>
-                                        @if($errors->has('content'))
-                                            @foreach ($errors->get('content') as $error)
-                                                {{$error}}
+                                            <input name="description" type="text" class="form-control form-control-line {{$errors->has('description') ? 'is-invalid':''}}" value="{{old('description')}}">
+                                        </div>                                        
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Category_id</label>
+                                        <select name="category_id" class="form-control">
+                                            <option disabled>Выберите категорию</option>
+                                            @foreach ($categories as $category)
+                                            <option value="{{$category->id}}">{{$category->name}}</option>
                                             @endforeach
-                                        @endif
-                                    </div><div class="form-group">
+                                        </select>                                       
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Price</label>
+                                        <div class="col-md-12">
+                                            <input name="price" type="text" class="form-control form-control-line {{$errors->has('price') ? 'is-invalid':''}}" value="{{old('price')}}">
+                                        </div>                                        
+                                    </div>
+                                    <div class="form-group">
                                         <label class="col-md-12">Image</label>
                                         <div class="col-md-12">
-                                            <input type="file" name="image" class="form-control {{$errors->has('image') ? 'is-invalid':''}}" value="{{old('image')}}">
-                                        </div> 
-                                        @if($errors->has('image'))
-                                            @foreach ($errors->get('image') as $error)
-                                                {{$error}}
-                                            @endforeach
-                                        @endif                                       
+                                            <input name="image" type="file" class="form-control form-control-line {{$errors->has('image') ? 'is-invalid':''}}" value="{{old('image')}}">
+                                        </div>                                        
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Active</label>
+                                        <div class="col-md-12">
+                                            <input name="active" type="checkbox" value="{{old('1')}}">
+                                        </div>                                        
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">

@@ -1,3 +1,5 @@
+@php use Illuminate\Support\Facades\Storage; @endphp
+
 @extends('layouts.admin')
 
 @section('content')
@@ -5,21 +7,7 @@
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
-            <div class="page-breadcrumb">
-                <div class="row align-items-center">
-                    <div class="col-5">
-                        <h4 class="page-title">Dashboard</h4>
-                        <div class="d-flex align-items-center">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Library</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @include('partials.header', ['name' => 'Products'])
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
@@ -40,6 +28,7 @@
                                         <tr class="bg-light">
                                             <th class="border-top-0">ID</th>
                                             <th class="border-top-0">Name</th>
+                                            <th class="border-top-0">Image</th>
                                             <th class="border-top-0">Action</th>
                                             <!-- <th class="border-top-0">Technology</th> -->
                                             <!-- <th class="border-top-0">Tickets</th> -->
@@ -52,7 +41,8 @@
                                         <tr>
                                             
                                             <td>{{ $product->id }}</td>
-                                            <td>{{ $product->name }}</td>                                        
+                                            <td>{{ $product->name }}</td>   
+                                            <td><img src="{{Storage::url($product->image)}}" alt="" srcset="" style="width: 100px"></td>                                     
                                             <td><a href="{{ route('products.edit', compact('product'))}}" class="btn btn-info">EDIT</a>
                                                 <form action="{{ route('products.destroy', compact('product'))}}" method="POST">
                                                     @method('DELETE')

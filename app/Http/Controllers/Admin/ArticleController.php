@@ -16,7 +16,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::paginate(10);
+        $articles = Article::paginate();
         return view('admin.articles.index', compact('articles'));
     }
 
@@ -71,7 +71,7 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(ArticleRequest $request, Article $article)
     {
         $article->fill($request->all());
         $article->save();
