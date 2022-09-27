@@ -12,4 +12,9 @@ class Category extends Model
     //protected $guarded = ['id']; // кот нельзя изменять
     //protected $primaryKey = 'category_id';
     //protected $table = 'catalog_categories'; переменовка таблица
+
+    public function products(){
+        return $this->hasMany(Product::class);
+        //$this->belongsToMany(Product::class, 'role_users', 'category_id', 'product_id');
+    }
 }
