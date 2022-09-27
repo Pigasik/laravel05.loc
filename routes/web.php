@@ -25,7 +25,16 @@ use Illuminate\Support\Facades\Storage;
 
 Route::get('/', SiteController::class);
 Route::get('/catalog', CatalogController::class);
-
+Route::get('catalog/{category_id}/{product_id}',[CatalogController::class,'product'])->name('site.product');
+Route::get('/cart', [CartController::class, 'getCart']);
+Route::get('/add_to_cart', [CartController::class, 'addToCart']);
+Route::get('/test', function(){
+    //$product = Product::inRandomOrder()->first();
+    $category = Category::inRandomOrder()->first();
+    //dump($category);
+    dd($category->products());
+ });
+ 
 //Route::get('/', function () {
     //dump(storage_path());
     //Storage::put('1.txt', 'veronika');
