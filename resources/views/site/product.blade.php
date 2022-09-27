@@ -1,6 +1,5 @@
 @extends('layouts.site')
-@section('content')
-    @if($product->active == 1)
+@section('content')    
         <!-- BREADCRUMB -->
         <div id="breadcrumb" class="section">
             <!-- container -->
@@ -327,8 +326,5 @@
             </div>
             <!-- /container -->
         </div>
-        <!-- /SECTION -->
-    @else
-        <h1>Товара нет в наличии</h1>
-    @endif
+        <!-- /SECTION -->    
 @endsection
