@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\MyController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\SiteController;
 use App\Http\Middleware\MyMiddleware;
 use App\Models\Category;
@@ -23,6 +24,7 @@ use Illuminate\Support\Facades\Storage;
 */
 
 Route::get('/', SiteController::class);
+Route::get('/catalog', CatalogController::class);
 
 //Route::get('/', function () {
     //dump(storage_path());
