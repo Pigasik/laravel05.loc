@@ -22,4 +22,10 @@ class CatalogController extends Controller
         return view('site.store', compact('products', 'categories'));
     }
 
+    public function product(Request $request, $category_id, $product_id){
+        $product = Product::find($product_id);
+        $category = Product::find($category_id);
+        return view("site.product", compact("product", "category"));
+    }
+
 }
