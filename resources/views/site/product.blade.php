@@ -29,20 +29,8 @@
                 <!-- row -->
                 <div class="row">
                     <!-- Product main img -->
-                    <div class="col-md-5 col-md-push-2">
+                    <div class="col-md-7 col-md-push">
                         <div id="product-main-img">
-                            <div class="product-preview">
-                                <img src="{{ $product->image }}" alt="">
-                            </div>
-
-                            <div class="product-preview">
-                                <img src="{{ $product->image }}" alt="">
-                            </div>
-
-                            <div class="product-preview">
-                                <img src="{{ $product->image }}" alt="">
-                            </div>
-
                             <div class="product-preview">
                                 <img src="{{ $product->image }}" alt="">
                             </div>
@@ -51,25 +39,7 @@
                     <!-- /Product main img -->
 
                     <!-- Product thumb imgs -->
-                    <div class="col-md-2  col-md-pull-5">
-                        <div id="product-imgs">
-                            <div class="product-preview">
-                                <img src="{{ $product->image }}" alt="">
-                            </div>
-
-                            <div class="product-preview">
-                                <img src="{{ $product->image }}" alt="">
-                            </div>
-
-                            <div class="product-preview">
-                                <img src="{{ $product->image }}" alt="">
-                            </div>
-
-                            <div class="product-preview">
-                                <img src="{{ $product->image }}" alt="">
-                            </div>
-                        </div>
-                    </div>
+                    
                     <!-- /Product thumb imgs -->
 
                     <!-- Product details -->
@@ -87,7 +57,7 @@
                                 <a class="review-link" href="#">10 Review(s) | Add your review</a>
                             </div>
                             <div><h3 class="product-price">${{ $product->price/100 }}</h3><span class="product-available">In Stock</span></div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <p>{{ $product->description }}</p>
 
                             <div class="product-options">
                                 <label>
@@ -155,7 +125,7 @@
                                 <div id="tab1" class="tab-pane fade in active">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                            <p>{{ $product->description }}</p>
                                         </div>
                                     </div>
                                 </div>

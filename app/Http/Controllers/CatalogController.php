@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -23,9 +24,8 @@ class CatalogController extends Controller
     }
 
     public function product(Request $request, $category_id, $product_id){
-        $product = Product::find($product_id);
-        $category = Product::find($category_id);
-        return view("site.product", compact("product", "category"));
+        $product  = Product::where('category_id', $category_id)->where('id', $product_id)->where('active', 1)->firstOrFail();
+        return view("site.product", compact("product"));
     }
-
+    
 }
