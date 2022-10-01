@@ -23,8 +23,11 @@ class CatalogController extends Controller
         return view('site.store', compact('products', 'categories'));
     }
 
-    public function product(Request $request, $category_id, $product_id){
-        $product  = Product::where('category_id', $category_id)->where('id', $product_id)->where('active', 1)->firstOrFail();
+    public function product($category_id, $product_id){
+        $product  = Product::where('category_id', $category_id)
+        ->where('id', $product_id)
+        ->where('active', 1)
+        ->firstOrFail();
         return view("site.product", compact("product"));
     }
     

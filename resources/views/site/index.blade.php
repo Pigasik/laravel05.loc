@@ -95,7 +95,7 @@
                                     <div class="product-body">
                                         <p class="product-category">{{$product->category->name}}</p>
                                         <h3 class="product-name"><a href="{{route('site.product',["category_id"=>$product->category->id,"product_id"=>$product->id])}}">{{ $product->name }}</a></h3>
-                                        <h4 class="product-price">{{ $product->price/100 }}</h4>
+                                        <h4 class="product-price">${{ $product->price/100 }}</h4>
                                         <div class="product-rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -110,7 +110,11 @@
                                         </div>
                                     </div>
                                     <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                        <form action="{{route('add_to_cart')}}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="product" value="{{$product->id}}">
+                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                        </form>                                   
                                     </div>
                                 </div>
                                 @endforeach
