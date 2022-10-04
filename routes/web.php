@@ -11,7 +11,9 @@ use App\Http\Controllers\SiteController;
 use App\Http\Middleware\MyMiddleware;
 use App\Models\Category;
 use App\Models\Product;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
@@ -31,7 +33,7 @@ Route::get('/catalog', CatalogController::class);
 Route::get('catalog/{category_id}/{product_id}',[CatalogController::class,'product'])->name('site.product');
 Route::get('/cart', [CartController::class, 'getCart'])->name('cart');
 Route::post('/add_to_cart', [CartController::class, 'addToCart'])->name('add_to_cart');
-Route::post('/test', function(Request $request){
+Route::get('/test', function(Request $request){
     //$product = Product::inRandomOrder()->first();
     //$category = Category::inRandomOrder()->first();
     //dump($category);
@@ -50,8 +52,42 @@ Route::post('/test', function(Request $request){
     // $json = json_encode($data);
     // dump(json_encode($json));
     // dump((json_decode($json, true))); 
-    $data = $request->all();
-    return response()->json($data)-> setStatusCode(401);        
+    // $data = $request->all();
+    // return response()->json($data)-> setStatusCode(401); 
+    
+    
+    // $query = [
+    //     'ondate' => '2016-7-1',
+    //     'periodicity'=> '1'
+    // ];
+    // $client = new Client([
+    //     'base_uri' => 'https://www.nbrb.by/api/'
+    // ]);
+    // // $responce = $client->request('GET', 'exrates/rates/145', [
+    // //     'query' => [
+    // //         'ondate' => '2016-7-1',
+    // //         'periodicity' => '1'
+    // //     ]
+    // // ]);   
+    // $response = $client->get('exrates/rates/145',['query' => $query]);
+    // $response = $client->get('exrates/rates',['query' => $query]);
+    // dd(json_decode(($response->getBody()->getContents()), true));  
+    
+    
+//     $response = Http::asJson()
+//     ->get('https://www.nbrb.by/api/exrates/rates/145?ondate=2016-7-1&periodicity=1');
+//     // if ($responce->failed()){
+//     //     switch (true){
+//     //         case $responce ->clientError():
+//     //             ///
+//     //             break;
+//     //         case $responce ->serverError():
+//     //             ///
+//     //             break;    
+//     //     }
+//    // }
+//     dd($response->json());
+       return view('test');
  });
 
 

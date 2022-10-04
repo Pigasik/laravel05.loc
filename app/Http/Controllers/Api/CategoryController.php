@@ -7,6 +7,7 @@ use App\Http\Requests\CategoryRequest;
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
+use Exception;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -18,8 +19,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate();
-        return new CategoryCollection($categories);
+        $categories = Category::paginate(10);
+        return response()->json(new CategoryCollection($categories))
+        ->setStatusCode(200);
     }
 
     /**
@@ -30,8 +32,15 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        Category::create($request->all());
-        return response($request->all(), 201);
+        try{
+            $category = Category::create($request->all());
+        }catch(Exception $exception){
+            return response()->json(['errors' => $exception->getMessage()])
+            ->setStatusCode(500);
+        }
+        
+        return response()->json(new CategoryResource($category))
+        ->setStatusCode(201);
     }
 
     /**
@@ -40,9 +49,14 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($id)
     {
-        return new CategoryResource($category);
+        $category = Category::find($id);
+        if ($category){
+            return response()->json(new CategoryResource($category));
+        }
+        return response()->json(['errors' => ['Category not found']])
+        ->setStatusCode(404);
     }
 
     /**
@@ -64,9 +78,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        $category->delete();
-        return response('deleted', 204);
+        $category = Category::findOrFail($id);
+        $category->destroy();
+        return response()->json(['message' => 'Deleted'])->setStatusCode(204);
     }
 }
