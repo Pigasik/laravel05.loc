@@ -33,6 +33,7 @@ Route::get('/catalog', CatalogController::class);
 Route::get('catalog/{category_id}/{product_id}',[CatalogController::class,'product'])->name('site.product');
 Route::get('/cart', [CartController::class, 'getCart'])->name('cart');
 Route::post('/add_to_cart', [CartController::class, 'addToCart'])->name('add_to_cart');
+Route::get('/currency',[CurrencyController::class,'index'])->name('currency');
 Route::get('/test', function(Request $request){
     //$product = Product::inRandomOrder()->first();
     //$category = Category::inRandomOrder()->first();
