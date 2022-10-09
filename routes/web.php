@@ -7,13 +7,16 @@ use App\Http\Controllers\Admin\MyController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\SiteController;
 use App\Http\Middleware\MyMiddleware;
+use App\Mail\FirstMail;
 use App\Models\Category;
 use App\Models\Product;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
@@ -91,6 +94,20 @@ Route::get('/test', function(Request $request){
        return view('test');
  });
 
+// валюты  Route::get('/test-convert', function(Request $request){   
+//     $responce = Http::get('https://www.nbrb.by/api/exrates/currencies');
+//     $currencies = $responce->collect()->keyBy('Cur_Abbreviation');
+//     return view('test', compact('currencies'));
+//  });
+
+//  Route::post('/test-convert', function(Request $request){
+//     $query = [
+//         'periodicity' => 0
+//     ];
+//     $responce = Http::get('https://www.nbrb.by/api/exrates/rates', $query);
+//     dd($responce->collect()->keyBy('Cur_Abbreviation'));
+    
+// });
 
 //Route::get('/', function () {
     //dump(storage_path());
@@ -103,6 +120,53 @@ Route::get('/test', function(Request $request){
 // Route::get('/any_file', function(){
 //     return Storage::download('test.txt');
 // });
+
+// Route::get('/weather', function(Request $request){
+//     $query = [
+//         'key' => env('WEATHER_API_KEY'),
+//         'q' => 'Misk',
+//         'dt' => '1986-08-31'
+//     ];
+//     $client = Http::baseUrl('http://api.weatherapi.com/v1');
+//     $responce = $client->get('/current.json', $query);
+//     $result = $responce['current']['temp_c'].'C'. ' '.$responce['location']['region'].$query['dt'];
+//     dd($result);
+// });
+
+// Route::get('/weather', function(Request $request){
+//     $query = [
+//         'key' => 'kKitYKz9Oa2nxe933jhhIO0mYqSnVX6x',
+//         'limit' => 25,
+//         'rating' => 'g'        
+//     ];
+//     $responce = Http::get('https://api.giphy.com/v1/gifs/trending', $query);
+//     foreach($responce->collect(['data']) as $gif){
+//         echo "<img src='{$gif['embed_url']}'/>";
+//     }
+// });
+
+Route::get('/weather', function(Request $request){
+        // $query = [
+        //     'lang' => 'ru',
+        //     'type' => 'json'    
+        // ];
+        // $responce = Http::get('https://evilinsult.com/generate_insult.php', $query);
+        // dd($responce->json());  
+        
+        // Http::post('https://app.sms.by//api/v1/requisites', [
+        //     'token' => '',
+        //     'message' => '',
+        //     'phone' => ''
+        // ]);
+        $mail = new FirstMail('Hello mail');
+        Mail::send($mail);
+        
+
+    });
+
+
+
+
 
 Auth::routes();
 
