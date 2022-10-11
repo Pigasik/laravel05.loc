@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\CurrencyController;
+use App\Http\Controllers\FilmsController;
+use App\Http\Controllers\QuotesController;
 use App\Http\Controllers\SiteController;
 use App\Http\Middleware\MyMiddleware;
 use App\Mail\FirstMail;
@@ -37,6 +39,9 @@ Route::get('catalog/{category_id}/{product_id}',[CatalogController::class,'produ
 Route::get('/cart', [CartController::class, 'getCart'])->name('cart');
 Route::post('/add_to_cart', [CartController::class, 'addToCart'])->name('add_to_cart');
 Route::get('/currency',[CurrencyController::class,'index'])->name('currency');
+Route::get('/quotes', [QuotesController::class,'index']);
+Route::get('/films', [FilmsController::class,'index']);
+
 Route::get('/test', function(Request $request){
     //$product = Product::inRandomOrder()->first();
     //$category = Category::inRandomOrder()->first();
